@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Тест темпераменту</title>
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='ico.png')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/styles.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kurale&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-image: url({{url_for('static', filename='img/background.png')}});">
+    <div class="logo">
+        <img src="{{url_for('static', filename='img/logo.png')}}" class="logoimage">
+        <div class="text">
+            <h1> Тест темпераменту </h1>
+        </div>
+    </div>
+    <div class="content">
+        <form action="/answer" method="post" id="quiz">
+        {% for number, value in questions.items() %}
+        <div>
+            <p>Питання №{{number}}</p>
+            <p>{{value['question']}}</p>
+            <ul class="options">
+                <li class="yes">
+                    <input type='radio' value='{{value['answers']['yes']}}' name='answer{{number}}' required class="yes">
+                    <label for='answer1'><p>Так</p></label>
+                </li>
+
+                <li class="no">
+                    <input type='radio' value='{{value['answers']['no']}}' name='answer{{number}}' required class="no">
+                    <label for='answer1'><p>Ні</p></label>
+                </li>
+            </ul>
+        </div>
+        <br>
+        {% endfor %}
+        <input type="submit" value="Визначити тип темпераменту" class="submit">
+        </form>
+    </div>
+</body>
+
+</html>
