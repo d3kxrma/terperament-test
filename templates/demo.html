@@ -13,14 +13,13 @@
 
 <body style="background-image: url({{url_for('static', filename='img/background.png')}});">
     <div class="logo">
-        <a href="https://github.com/d3kxrma/terperament-test">
-        <img src="{{url_for('static', filename='img/logo.png')}}" class="logoimage"></a>
+        <img src="{{url_for('static', filename='img/logo.png')}}" class="logoimage">
         <div class="text">
             <h1> Тест темпераменту </h1>
         </div>
     </div>
     <div class="content">
-        <form action="/answer" method="post" id="quiz">
+        <form action="/demoanswer" method="post" id="quiz">
         {% for number, value in questions.items() %}
         <div>
             <p>Питання №{{number}}</p>
@@ -28,12 +27,12 @@
             <ul class="options">
                 <li class="yes">
                     <input type='radio' value='{{value['answers']['yes']}}' name='answer{{number}}' required class="yes">
-                    <label for='answer1'><p>Так</p></label>
+                    <label for='answer1'><p>Так = {{value['answers']['yes']}}</p></label>
                 </li>
 
                 <li class="no">
                     <input type='radio' value='{{value['answers']['no']}}' name='answer{{number}}' required class="no">
-                    <label for='answer1'><p>Ні</p></label>
+                    <label for='answer1'><p>Ні = {{value['answers']['no']}}</p></label>
                 </li>
             </ul>
         </div>

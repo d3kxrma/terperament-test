@@ -16,5 +16,19 @@ def answer():
         if (score >= int(result["minimum"]) and score <= int(result["maximum"])):
             return render_template("answer.html", type=result["type"], text = result["text"])
 
+@app.route("/demo")
+def demo():
+    questions = json.load(open("questions.json", encoding="utf-8"))
+    return render_template("demo.html", questions=questions)
+
+@app.route("/demoanswer", methods=["POST"])
+def demo_answer():
+    score = sum([int(x) for x in request.form.values()])
+    results = json.load(open("results.json", encoding="utf-8"))
+    for result in results.values():
+        if (score >= int(result["minimum"]) and score <= int(result["maximum"])):
+            return render_template("demoanswer.html", type=result["type"], text = result["text"], mark=score)
+
+
 if __name__ == "__main__":
     app.run(debug=False)
